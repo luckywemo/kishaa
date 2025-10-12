@@ -1,0 +1,221 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.header {
+  text-align: center;
+  padding: 2rem;
+  color: white;
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.connect-section,
+.connected-section {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.connect-section h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.connect-section p {
+  color: #666;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.wallet-buttons {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.wallet-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wallet-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.account-info {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.account-info h2 {
+  color: #28a745;
+  margin-bottom: 1rem;
+}
+
+.account-info p {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.disconnect-button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.disconnect-button:hover {
+  background: #c82333;
+}
+
+.contract-section h3 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.contract-info {
+  background: #e9ecef;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.contract-info p {
+  margin-bottom: 0.5rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.interaction-forms {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-group {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.form-group h4 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.action-button {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .wallet-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  .main {
+    padding: 1rem;
+  }
+  
+  .connect-section,
+  .connected-section {
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "kisha-walletconnect",
+  "version": "1.0.0",
+  "description": "WalletConnect integration project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "node": "hardhat node"
+  },
+  "dependencies": {
+    "@walletconnect/modal": "^2.6.6",
+    "@walletconnect/web3-provider": "^1.8.0",
+    "next": "14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "wagmi": "^1.4.13",
+    "viem": "^1.19.9",
+    "@tanstack/react-query": "^4.36.1",
+    "ethers": "^6.8.1"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.2",
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "14.0.0",
+    "hardhat": "^2.17.1",
+    "typescript": "^5.2.0"
+  },
+  "keywords": [
+    "walletconnect",
+    "web3",
+    "ethereum",
+    "hardhat",
+    "nextjs"
+  ],
+  "author": "",
+  "license": "MIT"
+}
