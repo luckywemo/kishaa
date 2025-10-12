@@ -1,6 +1,9 @@
 import { useState } from 'react'
-import { useAccount, useConnect, useDisconnect, useBalance, useWriteContract, useReadContract } from 'wagmi'
+import { useAccount, useBalance, useWriteContract, useReadContract } from 'wagmi'
 import { parseEther } from 'viem'
+import WalletConnectComponent from '../components/WalletConnect'
+import TokenManager from '../components/TokenManager'
+import TransactionHistory from '../components/TransactionHistory'
 
 // Contract ABI - you'll need to update this with your deployed contract address
 const SIMPLE_STORAGE_ABI = [
@@ -46,23 +49,25 @@ const CONTRACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' // Default
 
 export default function Home() {
   const { address, isConnected } = useAccount()
-  const { connect, connectors } = useConnect()
-  const { disconnect } = useDisconnect()
-  const { data: balance } = useBalance({ address })
   const { writeContract } = useWriteContract()
   
   const [inputValue, setInputValue] = useState('')
   const [depositAmount, setDepositAmount] = useState('')
+  const [activeTab, setActiveTab] = useState('storage')
+
+  // Contract addresses - update these with your deployed addresses
+  const SIMPLE_STORAGE_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+  const KISHA_TOKEN_ADDRESS = '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0' // Update with deployed token address
 
   // Read contract data
   const { data: storedData } = useReadContract({
-    address: CONTRACT_ADDRESS,
+    address: SIMPLE_STORAGE_ADDRESS,
     abi: SIMPLE_STORAGE_ABI,
     functionName: 'retrieve',
   })
 
   const { data: contractBalance } = useReadContract({
-    address: CONTRACT_ADDRESS,
+    address: SIMPLE_STORAGE_ADDRESS,
     abi: SIMPLE_STORAGE_ABI,
     functionName: 'getBalance',
   })
@@ -71,7 +76,7 @@ export default function Home() {
     if (!inputValue) return
     try {
       await writeContract({
-        address: CONTRACT_ADDRESS,
+        address: SIMPLE_STORAGE_ADDRESS,
         abi: SIMPLE_STORAGE_ABI,
         functionName: 'store',
         args: [BigInt(inputValue)],
@@ -86,7 +91,7 @@ export default function Home() {
     if (!depositAmount) return
     try {
       await writeContract({
-        address: CONTRACT_ADDRESS,
+        address: SIMPLE_STORAGE_ADDRESS,
         abi: SIMPLE_STORAGE_ABI,
         functionName: 'deposit',
         value: parseEther(depositAmount),
@@ -101,75 +106,90 @@ export default function Home() {
     <div className="container">
       <header className="header">
         <h1>🔗 Kisha WalletConnect Integration</h1>
-        <p>Connect your wallet and interact with smart contracts</p>
+        <p>Advanced Web3 dApp with multi-contract support</p>
       </header>
 
       <main className="main">
         {!isConnected ? (
-          <div className="connect-section">
-            <h2>Connect Your Wallet</h2>
-            <p>Choose a wallet to connect to the app:</p>
-            <div className="wallet-buttons">
-              {connectors.map((connector) => (
-                <button
-                  key={connector.uid}
-                  onClick={() => connect({ connector })}
-                  className="wallet-button"
-                >
-                  {connector.name}
-                </button>
-              ))}
-            </div>
-          </div>
+          <WalletConnectComponent />
         ) : (
           <div className="connected-section">
-            <div className="account-info">
-              <h2>✅ Connected</h2>
-              <p><strong>Address:</strong> {address}</p>
-              <p><strong>Balance:</strong> {balance?.formatted} {balance?.symbol}</p>
-              <button onClick={() => disconnect()} className="disconnect-button">
-                Disconnect
+            <WalletConnectComponent />
+            
+            <div className="app-tabs">
+              <button 
+                className={`tab ${activeTab === 'storage' ? 'active' : ''}`}
+                onClick={() => setActiveTab('storage')}
+              >
+                📦 Storage Contract
+              </button>
+              <button 
+                className={`tab ${activeTab === 'tokens' ? 'active' : ''}`}
+                onClick={() => setActiveTab('tokens')}
+              >
+                🪙 Token Manager
+              </button>
+              <button 
+                className={`tab ${activeTab === 'history' ? 'active' : ''}`}
+                onClick={() => setActiveTab('history')}
+              >
+                📊 Transaction History
               </button>
             </div>
 
-            <div className="contract-section">
-              <h3>Smart Contract Interaction</h3>
-              <div className="contract-info">
-                <p><strong>Contract Address:</strong> {CONTRACT_ADDRESS}</p>
-                <p><strong>Stored Data:</strong> {storedData?.toString() || '0'}</p>
-                <p><strong>Contract Balance:</strong> {contractBalance ? `${(Number(contractBalance) / 1e18).toFixed(4)} ETH` : '0 ETH'}</p>
-              </div>
+            <div className="tab-content">
+              {activeTab === 'storage' && (
+                <div className="contract-section">
+                  <h3>📦 Simple Storage Contract</h3>
+                  <div className="contract-info">
+                    <p><strong>Contract Address:</strong> {SIMPLE_STORAGE_ADDRESS}</p>
+                    <p><strong>Stored Data:</strong> {storedData?.toString() || '0'}</p>
+                    <p><strong>Contract Balance:</strong> {contractBalance ? `${(Number(contractBalance) / 1e18).toFixed(4)} ETH` : '0 ETH'}</p>
+                  </div>
 
-              <div className="interaction-forms">
-                <div className="form-group">
-                  <h4>Store Data</h4>
-                  <input
-                    type="number"
-                    placeholder="Enter a number"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    className="input"
-                  />
-                  <button onClick={handleStore} className="action-button">
-                    Store Data
-                  </button>
-                </div>
+                  <div className="interaction-forms">
+                    <div className="form-group">
+                      <h4>Store Data</h4>
+                      <input
+                        type="number"
+                        placeholder="Enter a number"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        className="input"
+                      />
+                      <button onClick={handleStore} className="action-button">
+                        Store Data
+                      </button>
+                    </div>
 
-                <div className="form-group">
-                  <h4>Deposit ETH</h4>
-                  <input
-                    type="number"
-                    step="0.001"
-                    placeholder="Amount in ETH"
-                    value={depositAmount}
-                    onChange={(e) => setDepositAmount(e.target.value)}
-                    className="input"
-                  />
-                  <button onClick={handleDeposit} className="action-button">
-                    Deposit ETH
-                  </button>
+                    <div className="form-group">
+                      <h4>Deposit ETH</h4>
+                      <input
+                        type="number"
+                        step="0.001"
+                        placeholder="Amount in ETH"
+                        value={depositAmount}
+                        onChange={(e) => setDepositAmount(e.target.value)}
+                        className="input"
+                      />
+                      <button onClick={handleDeposit} className="action-button">
+                        Deposit ETH
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {activeTab === 'tokens' && (
+                <TokenManager 
+                  tokenAddress={KISHA_TOKEN_ADDRESS}
+                  userAddress={address || ''}
+                />
+              )}
+
+              {activeTab === 'history' && (
+                <TransactionHistory />
+              )}
             </div>
           </div>
         )}
@@ -177,6 +197,14 @@ export default function Home() {
 
       <footer className="footer">
         <p>Built with WalletConnect, Wagmi, and Hardhat</p>
+        <div className="footer-links">
+          <a href="https://github.com/luckywemo/kishaa" target="_blank" rel="noopener noreferrer">
+            📁 GitHub Repository
+          </a>
+          <a href="https://docs.walletconnect.com/" target="_blank" rel="noopener noreferrer">
+            📚 WalletConnect Docs
+          </a>
+        </div>
       </footer>
     </div>
   )
