@@ -2,7 +2,10 @@ import { useState } from 'react'
 import { useAccount, useBalance, useWriteContract, useReadContract } from 'wagmi'
 import { parseEther } from 'viem'
 import WalletConnectComponent from '../components/WalletConnect'
+import MobileWalletConnect from '../components/MobileWalletConnect'
 import TokenManager from '../components/TokenManager'
+import DEXManager from '../components/DEXManager'
+import NFTManager from '../components/NFTManager'
 import TransactionHistory from '../components/TransactionHistory'
 
 // Contract ABI - you'll need to update this with your deployed contract address
@@ -57,7 +60,9 @@ export default function Home() {
 
   // Contract addresses - update these with your deployed addresses
   const SIMPLE_STORAGE_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
-  const KISHA_TOKEN_ADDRESS = '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0' // Update with deployed token address
+  const KISHA_TOKEN_ADDRESS = '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
+  const KISHA_NFT_ADDRESS = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
+  const AMM_ADDRESS = '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9'
 
   // Read contract data
   const { data: storedData } = useReadContract({
@@ -111,7 +116,7 @@ export default function Home() {
 
       <main className="main">
         {!isConnected ? (
-          <WalletConnectComponent />
+          <MobileWalletConnect />
         ) : (
           <div className="connected-section">
             <WalletConnectComponent />
@@ -121,19 +126,31 @@ export default function Home() {
                 className={`tab ${activeTab === 'storage' ? 'active' : ''}`}
                 onClick={() => setActiveTab('storage')}
               >
-                📦 Storage Contract
+                📦 Storage
               </button>
               <button 
                 className={`tab ${activeTab === 'tokens' ? 'active' : ''}`}
                 onClick={() => setActiveTab('tokens')}
               >
-                🪙 Token Manager
+                🪙 Tokens
+              </button>
+              <button 
+                className={`tab ${activeTab === 'dex' ? 'active' : ''}`}
+                onClick={() => setActiveTab('dex')}
+              >
+                🔄 DEX
+              </button>
+              <button 
+                className={`tab ${activeTab === 'nft' ? 'active' : ''}`}
+                onClick={() => setActiveTab('nft')}
+              >
+                🎨 NFTs
               </button>
               <button 
                 className={`tab ${activeTab === 'history' ? 'active' : ''}`}
                 onClick={() => setActiveTab('history')}
               >
-                📊 Transaction History
+                📊 History
               </button>
             </div>
 
@@ -183,6 +200,22 @@ export default function Home() {
               {activeTab === 'tokens' && (
                 <TokenManager 
                   tokenAddress={KISHA_TOKEN_ADDRESS}
+                  userAddress={address || ''}
+                />
+              )}
+
+              {activeTab === 'dex' && (
+                <DEXManager 
+                  ammAddress={AMM_ADDRESS}
+                  tokenAAddress={KISHA_TOKEN_ADDRESS}
+                  tokenBAddress="0x0000000000000000000000000000000000000000" // ETH placeholder
+                  userAddress={address || ''}
+                />
+              )}
+
+              {activeTab === 'nft' && (
+                <NFTManager 
+                  nftAddress={KISHA_NFT_ADDRESS}
                   userAddress={address || ''}
                 />
               )}

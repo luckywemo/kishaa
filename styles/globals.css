@@ -805,6 +805,687 @@ body {
   text-decoration: underline;
 }
 
+/* Mobile Wallet Connect Styles */
+.mobile-wallet-connect {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.mobile-connect-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.mobile-connect-header h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-connect-header p {
+  color: #666;
+}
+
+.mobile-recommendations {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.mobile-recommendations h4 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.recommendation-cards {
+  display: grid;
+  gap: 1rem;
+}
+
+.recommendation-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+}
+
+.recommendation-icon {
+  font-size: 2rem;
+}
+
+.recommendation-content h5 {
+  margin: 0 0 0.25rem 0;
+  color: #333;
+}
+
+.recommendation-content p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.mobile-wallet-options {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.mobile-wallet-option {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.mobile-wallet-option:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.mobile-wallet-option.recommended {
+  border-color: #28a745;
+  background: #f8fff9;
+}
+
+.mobile-wallet-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wallet-icon-large-mobile {
+  font-size: 2rem;
+}
+
+.wallet-info-mobile-option h4 {
+  margin: 0 0 0.25rem 0;
+  color: #333;
+}
+
+.wallet-info-mobile-option p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.recommended-badge {
+  background: #28a745;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.mobile-connection-help {
+  margin-top: 1.5rem;
+}
+
+.mobile-connection-help summary {
+  cursor: pointer;
+  color: #667eea;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.help-content {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.help-content h4 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.help-content ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.help-content li {
+  margin-bottom: 0.25rem;
+  color: #666;
+}
+
+.mobile-wallet-connected {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.mobile-wallet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.wallet-info-mobile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wallet-icon-mobile {
+  font-size: 1.5rem;
+}
+
+.wallet-details-mobile h3 {
+  margin: 0 0 0.25rem 0;
+  color: #333;
+}
+
+.wallet-address-mobile {
+  margin: 0;
+  font-family: monospace;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.disconnect-btn-mobile {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.disconnect-btn-mobile:hover {
+  background: #c82333;
+}
+
+.mobile-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.action-btn-mobile {
+  flex: 1;
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.action-btn-mobile:hover {
+  background: #5a6fd8;
+}
+
+.qr-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.qr-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.qr-placeholder {
+  margin: 2rem 0;
+}
+
+.qr-code {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.close-qr {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* DEX Manager Styles */
+.dex-manager {
+  max-width: 900px;
+}
+
+.dex-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.dex-header h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.pool-info {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.pool-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.dex-tabs {
+  display: flex;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 0.25rem;
+  margin-bottom: 2rem;
+  gap: 0.25rem;
+}
+
+.dex-content {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.swap-form h4,
+.liquidity-form h4,
+.remove-form h4 {
+  margin: 0 0 1.5rem 0;
+  color: #333;
+}
+
+.swap-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-weight: 500;
+  color: #333;
+}
+
+.token-input-container {
+  display: flex;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.token-select {
+  background: #f8f9fa;
+  border: none;
+  padding: 0.75rem;
+  font-weight: 500;
+  color: #333;
+  min-width: 120px;
+}
+
+.amount-input {
+  flex: 1;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.amount-input:focus {
+  outline: none;
+}
+
+.swap-arrow {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.token-display {
+  background: #f8f9fa;
+  padding: 0.75rem;
+  font-weight: 500;
+  color: #333;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.amount-display {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.swap-info {
+  background: #e9ecef;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.swap-info p {
+  margin: 0.25rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.liquidity-inputs,
+.remove-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.liquidity-input,
+.remove-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.liquidity-input:focus,
+.remove-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.liquidity-info,
+.remove-info {
+  background: #fff3cd;
+  color: #856404;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.liquidity-info p,
+.remove-info p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.dex-button {
+  width: 100%;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dex-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.dex-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.remove-button {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+}
+
+/* NFT Manager Styles */
+.nft-manager {
+  max-width: 1000px;
+}
+
+.nft-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.nft-header h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.nft-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.nft-tabs {
+  display: flex;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 0.25rem;
+  margin-bottom: 2rem;
+  gap: 0.25rem;
+}
+
+.nft-content {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.mint-form h4,
+.transfer-form h4,
+.nft-gallery h4 {
+  margin: 0 0 1.5rem 0;
+  color: #333;
+}
+
+.minting-disabled {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mint-inputs,
+.transfer-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.mint-input,
+.transfer-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.mint-input:focus,
+.transfer-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.mint-cost {
+  background: #e9ecef;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.mint-cost p {
+  margin: 0;
+  color: #333;
+  font-weight: 500;
+}
+
+.nft-button {
+  width: 100%;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nft-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.nft-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mint-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.transfer-button {
+  background: linear-gradient(135deg, #ffc107 0%, #ff8c00 100%) !important;
+}
+
+.no-nfts {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.no-nfts-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.nft-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.nft-card:hover {
+  transform: translateY(-4px);
+}
+
+.nft-image {
+  height: 200px;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nft-placeholder {
+  text-align: center;
+}
+
+.nft-icon {
+  font-size: 3rem;
+  color: #666;
+}
+
+.nft-info {
+  padding: 1rem;
+}
+
+.nft-info h5 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.nft-owner {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+  font-family: monospace;
+}
+
+.nft-actions {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.nft-action-btn {
+  width: 100%;
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.nft-action-btn:hover {
+  background: #5a6fd8;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .header h1 {
     font-size: 2rem;
@@ -821,5 +1502,45 @@ body {
   .connect-section,
   .connected-section {
     padding: 1.5rem;
+  }
+
+  .app-tabs {
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    min-width: calc(50% - 0.25rem);
+  }
+
+  .pool-stats,
+  .nft-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .nft-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .swap-inputs {
+    gap: 0.5rem;
+  }
+
+  .token-input-container {
+    flex-direction: column;
+  }
+
+  .token-select,
+  .token-display {
+    min-width: auto;
+    text-align: center;
+  }
+
+  .mobile-actions {
+    flex-direction: column;
+  }
+
+  .recommendation-cards {
+    grid-template-columns: 1fr;
   }
 }
