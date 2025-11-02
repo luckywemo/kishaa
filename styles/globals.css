@@ -1670,3 +1670,299 @@ body {
 .copy-button:active {
   transform: scale(0.95);
 }
+
+/* Address Display Styles */
+.address-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: monospace;
+}
+
+.address-text {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.explorer-link {
+  color: #667eea;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.explorer-link:hover {
+  transform: scale(1.1);
+}
+
+/* Transaction Status Styles */
+.transaction-status-container {
+  margin-top: 1rem;
+}
+
+.tx-status {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.tx-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.tx-status.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.tx-status.error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.tx-status small {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.tx-link {
+  color: inherit;
+  text-decoration: underline;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.tx-link:hover {
+  opacity: 1;
+}
+
+/* Balance Display Styles */
+.balance-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.balance-label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.balance-value {
+  color: #333;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Error Boundary Styles */
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 2rem;
+}
+
+.error-boundary-content {
+  text-align: center;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 500px;
+}
+
+.error-boundary-content h2 {
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+.error-boundary-content p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.retry-button {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.retry-button:hover {
+  background: #5a6fd8;
+}
+
+/* Settings Modal Styles */
+.settings-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.settings-content {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.settings-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.settings-section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.settings-section:last-of-type {
+  border-bottom: none;
+}
+
+.settings-section h4 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.setting-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.slippage-input-group,
+.deadline-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.slippage-input,
+.deadline-input {
+  padding: 0.75rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100px;
+}
+
+.slippage-input:focus,
+.deadline-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.slippage-unit,
+.deadline-unit {
+  color: #666;
+  font-weight: 500;
+}
+
+.slippage-presets {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.preset-btn {
+  flex: 1;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.preset-btn:hover {
+  border-color: #667eea;
+}
+
+.preset-btn.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.setting-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.setting-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.settings-footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-button {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.save-button:hover {
+  background: #5a6fd8;
+}
