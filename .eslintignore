@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+build
+dist
+*.config.js
+hardhat.config.js
+artifacts
+cache
+coverage
+

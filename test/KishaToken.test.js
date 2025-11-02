@@ -33,7 +33,7 @@ describe("KishaToken", function () {
 
   describe("Transactions", function () {
     it("Should transfer tokens between accounts", async function () {
-      const transferAmount = ethers.utils.parseEther("100");
+      const transferAmount = ethers.parseEther("100");
       
       await kishaToken.transfer(addr1.address, transferAmount);
       expect(await kishaToken.balanceOf(addr1.address)).to.equal(transferAmount);
@@ -54,11 +54,11 @@ describe("KishaToken", function () {
 
     it("Should update balances after transfers", async function () {
       const initialOwnerBalance = await kishaToken.balanceOf(owner.address);
-      const transferAmount = ethers.utils.parseEther("100");
+      const transferAmount = ethers.parseEther("100");
 
       await kishaToken.transfer(addr1.address, transferAmount);
       expect(await kishaToken.balanceOf(owner.address)).to.equal(
-        initialOwnerBalance.sub(transferAmount)
+        initialOwnerBalance - transferAmount
       );
       expect(await kishaToken.balanceOf(addr1.address)).to.equal(transferAmount);
     });
@@ -66,7 +66,7 @@ describe("KishaToken", function () {
 
   describe("Approvals", function () {
     it("Should approve and transferFrom correctly", async function () {
-      const transferAmount = ethers.utils.parseEther("100");
+      const transferAmount = ethers.parseEther("100");
       
       await kishaToken.approve(addr1.address, transferAmount);
       expect(await kishaToken.allowance(owner.address, addr1.address)).to.equal(transferAmount);
@@ -76,7 +76,7 @@ describe("KishaToken", function () {
     });
 
     it("Should fail transferFrom if allowance is insufficient", async function () {
-      const transferAmount = ethers.utils.parseEther("100");
+      const transferAmount = ethers.parseEther("100");
       
       await expect(
         kishaToken.connect(addr1).transferFrom(owner.address, addr2.address, transferAmount)
@@ -86,16 +86,16 @@ describe("KishaToken", function () {
 
   describe("Minting", function () {
     it("Should allow owner to mint tokens", async function () {
-      const mintAmount = ethers.utils.parseEther("1000");
+      const mintAmount = ethers.parseEther("1000");
       const initialSupply = await kishaToken.totalSupply();
       
       await kishaToken.mint(addr1.address, mintAmount);
-      expect(await kishaToken.totalSupply()).to.equal(initialSupply.add(mintAmount));
+      expect(await kishaToken.totalSupply()).to.equal(initialSupply + mintAmount);
       expect(await kishaToken.balanceOf(addr1.address)).to.equal(mintAmount);
     });
 
     it("Should not allow non-owner to mint", async function () {
-      const mintAmount = ethers.utils.parseEther("1000");
+      const mintAmount = ethers.parseEther("1000");
       
       await expect(
         kishaToken.connect(addr1).mint(addr2.address, mintAmount)
@@ -105,15 +105,16 @@ describe("KishaToken", function () {
 
   describe("Burning", function () {
     it("Should allow users to burn their own tokens", async function () {
-      const burnAmount = ethers.utils.parseEther("100");
+      const burnAmount = ethers.parseEther("100");
       const initialBalance = await kishaToken.balanceOf(owner.address);
       
       await kishaToken.burn(burnAmount);
-      expect(await kishaToken.balanceOf(owner.address)).to.equal(initialBalance.sub(burnAmount));
+      expect(await kishaToken.balanceOf(owner.address)).to.equal(initialBalance - burnAmount);
     });
 
     it("Should not allow burning more tokens than balance", async function () {
-      const burnAmount = await kishaToken.balanceOf(owner.address).add(1);
+      const ownerBalance = await kishaToken.balanceOf(owner.address);
+      const burnAmount = ownerBalance + 1n;
       
       await expect(kishaToken.burn(burnAmount)).to.be.revertedWith("Insufficient balance to burn");
     });
@@ -129,7 +130,7 @@ describe("KishaToken", function () {
       await kishaToken.pause();
       
       await expect(
-        kishaToken.transfer(addr1.address, ethers.utils.parseEther("100"))
+        kishaToken.transfer(addr1.address, ethers.parseEther("100"))
       ).to.be.revertedWith("Token transfers are paused");
     });
 
@@ -137,7 +138,7 @@ describe("KishaToken", function () {
       await kishaToken.pause();
       await kishaToken.unpause();
       
-      const transferAmount = ethers.utils.parseEther("100");
+      const transferAmount = ethers.parseEther("100");
       await kishaToken.transfer(addr1.address, transferAmount);
       expect(await kishaToken.balanceOf(addr1.address)).to.equal(transferAmount);
     });
