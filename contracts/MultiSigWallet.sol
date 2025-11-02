@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.5.11;
+pragma solidity ^0.8.19;
 
 /**
  * @title MultiSigWallet
@@ -52,7 +52,6 @@ contract MultiSigWallet {
     }
     
     constructor(address[] memory _owners, uint256 _required) 
-        public 
         validRequirement(_owners.length, _required) 
     {
         for (uint256 i = 0; i < _owners.length; i++) {
@@ -62,7 +61,7 @@ contract MultiSigWallet {
         required = _required;
     }
     
-    function() external payable {
+    receive() external payable {
         if (msg.value > 0) {
             emit Deposit(msg.sender, msg.value);
         }
@@ -89,9 +88,8 @@ contract MultiSigWallet {
     function confirmTransaction(uint256 transactionId) 
         public 
         ownerExists(msg.sender) 
-        confirmed(transactionId, msg.sender) 
-        notExecuted(transactionId) 
     {
+        require(!confirmations[transactionId][msg.sender], "Already confirmed");
         confirmations[transactionId][msg.sender] = true;
         emit Confirmation(msg.sender, transactionId);
         executeTransaction(transactionId);
@@ -100,9 +98,9 @@ contract MultiSigWallet {
     function revokeConfirmation(uint256 transactionId) 
         public 
         ownerExists(msg.sender) 
-        confirmed(transactionId, msg.sender) 
-        notExecuted(transactionId) 
     {
+        require(confirmations[transactionId][msg.sender], "Transaction not confirmed");
+        require(!transactions[transactionId].executed, "Transaction already executed");
         confirmations[transactionId][msg.sender] = false;
         emit Confirmation(msg.sender, transactionId);
     }
@@ -110,7 +108,6 @@ contract MultiSigWallet {
     function executeTransaction(uint256 transactionId) 
         public 
         ownerExists(msg.sender) 
-        confirmed(transactionId, msg.sender) 
         notExecuted(transactionId) 
     {
         if (isConfirmed(transactionId)) {
@@ -171,7 +168,7 @@ contract MultiSigWallet {
         uint256 count = 0;
         uint256 i;
         for (i = 0; i < transactionCount; i++) {
-            if (pending && !transactions[i].executed || executed && transactions[i].executed) {
+            if ((pending && !transactions[i].executed) || (executed && transactions[i].executed)) {
                 transactionIdsTemp[count] = i;
                 count += 1;
             }
@@ -191,9 +188,7 @@ contract MultiSigWallet {
             let x := mload(0x40)   // "Allocate" memory for output (0x40 is where "free memory" pointer is stored by convention)
             let d := add(data, 32) // First 32 bytes are the padded length of data, so actual data starts at +32
             result := call(
-                sub(gas, 34710),   // 34710 is the value that solidity is currently emitting
-                                  // It includes callGas (700) + callVeryLow (3, to pay for SUB) + callValueTransferGas (9000) +
-                                  // callNewAccountGas (25000, in case the destination address does not exist and needs creating)
+                gas(),
                 destination,
                 value,
                 d,

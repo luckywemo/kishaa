@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.5.11;
+pragma solidity ^0.8.19;
 
 /**
  * @title KishaNFT
@@ -43,7 +43,7 @@ contract KishaNFT {
         _;
     }
     
-    constructor() public {
+    constructor() {
         owner = msg.sender;
     }
     
@@ -165,7 +165,8 @@ contract KishaNFT {
         uint256 balance = address(this).balance;
         require(balance > 0, "No funds to withdraw");
         
-        payable(owner).transfer(balance);
+        (bool success, ) = payable(owner).call{value: balance}("");
+        require(success, "Transfer failed");
     }
     
     // Helper function to convert uint to string
@@ -182,7 +183,7 @@ contract KishaNFT {
         bytes memory bstr = new bytes(len);
         uint256 k = len - 1;
         while (_i != 0) {
-            bstr[k--] = byte(uint8(48 + _i % 10));
+            bstr[k--] = bytes1(uint8(48 + _i % 10));
             _i /= 10;
         }
         return string(bstr);

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.5.11;
+pragma solidity ^0.8.19;
 
 contract SimpleStorage {
     uint256 private storedData;
@@ -37,7 +37,8 @@ contract SimpleStorage {
     // Function to withdraw ETH (only owner)
     function withdraw(uint256 amount) public onlyOwner {
         require(amount <= address(this).balance, "Insufficient balance");
-        payable(owner).transfer(amount);
+        (bool success, ) = payable(owner).call{value: amount}("");
+        require(success, "Transfer failed");
     }
     
     // Get contract balance

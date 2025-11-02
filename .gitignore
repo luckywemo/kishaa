@@ -19,6 +19,7 @@ out/
 cache/
 artifacts/
 typechain-types/
+deployed-contracts.json
 
 # IDE
 .vscode/

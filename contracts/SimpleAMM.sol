@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.5.11;
+pragma solidity ^0.8.19;
 
 /**
  * @title SimpleAMM
@@ -23,7 +23,7 @@ contract SimpleAMM {
         _;
     }
     
-    constructor(address _tokenA, address _tokenB) public {
+    constructor(address _tokenA, address _tokenB) {
         tokenA = _tokenA;
         tokenB = _tokenB;
     }
@@ -111,14 +111,14 @@ contract SimpleAMM {
         _reserveB = reserveB;
     }
     
-    // Helper function to transfer tokens (simplified)
+    // Helper function to transfer tokens (simplified - assumes tokens are ERC20)
     function transfer(address token, address to, uint256 amount) internal returns (bool) {
         // This is a simplified version - in practice you'd use proper ERC20 interface
         // For this example, we'll assume the tokens are already in this contract
         return true;
     }
     
-    // Helper function to transfer tokens from user (simplified)
+    // Helper function to transfer tokens from user (simplified - assumes tokens are ERC20)
     function transferFrom(address token, address from, address to, uint256 amount) internal returns (bool) {
         // This is a simplified version - in practice you'd use proper ERC20 interface
         // For this example, we'll assume the user has approved this contract

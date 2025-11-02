@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.5.11;
+pragma solidity ^0.8.19;
 
 /**
  * @title KishaToken
@@ -34,7 +34,7 @@ contract KishaToken {
         _;
     }
     
-    constructor(uint256 _initialSupply) public {
+    constructor(uint256 _initialSupply) {
         owner = msg.sender;
         totalSupply = _initialSupply * 10**uint256(decimals);
         balanceOf[msg.sender] = totalSupply;

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useAccount, useConnect, useDisconnect, useBalance } from 'wagmi'
-import { WalletConnect, MetaMask, Injected } from 'wagmi/connectors'
 
 interface WalletConnectProps {
   onConnect?: () => void
