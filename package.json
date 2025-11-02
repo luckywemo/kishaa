@@ -20,7 +20,10 @@
     "node": "hardhat node",
     "clean": "hardhat clean",
     "verify:sepolia": "hardhat verify --network sepolia",
-    "size": "hardhat size-contracts"
+    "size": "hardhat size-contracts",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "type-check": "tsc --noEmit",
+    "prepare": "husky install || true"
   },
   "dependencies": {
     "@walletconnect/modal": "^2.6.6",
@@ -31,7 +34,10 @@
     "wagmi": "^1.4.13",
     "viem": "^1.19.9",
     "@tanstack/react-query": "^4.36.1",
-    "ethers": "^6.8.1"
+    "ethers": "^6.8.1",
+    "react-hot-toast": "^2.4.1",
+    "date-fns": "^2.30.0",
+    "qrcode.react": "^3.1.0"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.2",
@@ -44,7 +50,9 @@
     "hardhat": "^2.17.1",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.5",
-    "typescript": "^5.2.0"
+    "typescript": "^5.2.0",
+    "@types/qrcode.react": "^3.0.2",
+    "prettier": "^3.1.0"
   },
   "keywords": [
     "walletconnect",
