@@ -9,4 +9,6 @@ export { useContractRead } from './useContractRead'
 export { useContractWrite } from './useContractWrite'
 export { useNetwork } from './useNetwork'
 export { useApprove } from './useApprove'
-
+export { useInterval } from './useInterval'
+export { usePrevious } from './usePrevious'
+export { useOnClickOutside } from './useOnClickOutside'
