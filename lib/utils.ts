@@ -3,7 +3,7 @@
  */
 
 /**
- * Combine class names
+ * Combine class names (clsx-like utility)
  */
 export function cn(...classes: (string | undefined | null | false)[]): string {
   return classes.filter(Boolean).join(' ')
@@ -14,37 +14,6 @@ export function cn(...classes: (string | undefined | null | false)[]): string {
  */
 export function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms))
-}
-
-/**
- * Throttle function calls
- */
-export function throttle<T extends (...args: any[]) => any>(
-  func: T,
-  limit: number
-): (...args: Parameters<T>) => void {
-  let inThrottle: boolean
-  return function (this: any, ...args: Parameters<T>) {
-    if (!inThrottle) {
-      func.apply(this, args)
-      inThrottle = true
-      setTimeout(() => (inThrottle = false), limit)
-    }
-  }
-}
-
-/**
- * Debounce function calls
- */
-export function debounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number
-): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout | null = null
-  return function (this: any, ...args: Parameters<T>) {
-    if (timeout) clearTimeout(timeout)
-    timeout = setTimeout(() => func.apply(this, args), wait)
-  }
 }
 
 /**
