@@ -23,7 +23,9 @@
     "size": "hardhat size-contracts",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "type-check": "tsc --noEmit",
-    "prepare": "husky install || true"
+    "prepare": "husky install || true",
+    "update-contracts": "node scripts/update-contracts.js",
+    "postdeploy:all": "npm run update-contracts"
   },
   "dependencies": {
     "@walletconnect/modal": "^2.6.6",
