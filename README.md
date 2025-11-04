@@ -1,20 +1,38 @@
 # 🔗 Kisha WalletConnect Integration
 
-A full-stack Web3 application that demonstrates WalletConnect integration with smart contracts using Hardhat, Next.js, and Wagmi.
+A production-ready full-stack Web3 application featuring WalletConnect integration, multiple smart contracts, and a comprehensive component library built with Hardhat, Next.js, Wagmi, and TypeScript.
 
 ## 🚀 Features
 
-- **WalletConnect v2 Integration**: Connect with multiple wallets including MetaMask, WalletConnect, and injected wallets
-- **Smart Contract Interaction**: Deploy and interact with a SimpleStorage contract
-- **Modern UI**: Beautiful, responsive interface built with Next.js
-- **Hardhat Integration**: Complete smart contract development environment
-- **TypeScript Support**: Full TypeScript support for better development experience
+### Core Features
+- **WalletConnect v2 Integration**: Connect with multiple wallets (MetaMask, WalletConnect, Coinbase, etc.)
+- **Multiple Smart Contracts**: 
+  - SimpleStorage (basic storage & ETH deposits)
+  - KishaToken (ERC20 token)
+  - KishaNFT (ERC721 NFT collection)
+  - SimpleAMM (Decentralized exchange)
+  - MultiSigWallet (Multi-signature wallet)
+- **Modern UI Components**: 35+ reusable components with beautiful styling
+- **Custom Hooks**: 37+ React hooks for Web3 interactions
+- **TypeScript**: Full type safety throughout the application
+- **Error Handling**: Comprehensive error boundaries and user-friendly messages
+
+### Advanced Features
+- **Network Switching**: Support for multiple chains with automatic switching
+- **Transaction History**: Track and display transaction history
+- **Token Management**: Transfer, approve, and manage ERC20 tokens
+- **DEX Operations**: Swap tokens and manage liquidity
+- **NFT Management**: Mint, view, and transfer NFTs
+- **Settings**: Configurable slippage, transaction deadlines, and auto-connect
+- **SEO Optimized**: Built-in SEO components and metadata management
+- **Performance**: Optimized with throttling, debouncing, and memoization
 
 ## 📋 Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js (v18 or higher recommended)
 - npm or yarn
 - Git
+- WalletConnect Project ID ([Get one here](https://cloud.walletconnect.com))
 
 ## 🛠️ Installation
 
@@ -26,12 +44,19 @@ A full-stack Web3 application that demonstrates WalletConnect integration with s
 
 2. **Set up environment variables:**
    ```bash
-   cp env.example .env.local
+   # Create .env.local file
+   cp .env.example .env.local
+   # Or manually create .env.local with:
    ```
    
    Edit `.env.local` and add your WalletConnect Project ID:
    ```env
    NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id_here
+   ```
+   
+   **Check your environment setup:**
+   ```bash
+   npm run check-env
    ```
 
 3. **Get a WalletConnect Project ID:**
@@ -81,22 +106,67 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ```
 Kisha/
-├── contracts/              # Smart contracts
-│   └── SimpleStorage.sol   # Main contract
-├── scripts/                # Deployment scripts
-│   └── deploy.js          # Contract deployment
+├── contracts/              # Smart contracts (Solidity 0.8.19)
+│   ├── SimpleStorage.sol
+│   ├── KishaToken.sol
+│   ├── KishaNFT.sol
+│   ├── SimpleAMM.sol
+│   └── MultiSigWallet.sol
+├── scripts/                # Deployment & utility scripts
+│   ├── deploy.js
+│   ├── deploy-tokens.js
+│   ├── deploy-all.js
+│   ├── update-contracts.js
+│   └── check-env.js
 ├── test/                   # Contract tests
-│   └── SimpleStorage.test.js
+│   └── *.test.js
 ├── pages/                  # Next.js pages
 │   ├── _app.tsx           # App wrapper with providers
-│   └── index.tsx          # Main application page
-├── config/                 # Configuration files
-│   └── wagmi.ts           # Wagmi configuration
-├── styles/                 # CSS styles
+│   ├── _document.tsx      # Custom document
+│   ├── index.tsx          # Homepage
+│   ├── examples.tsx       # Component examples
+│   ├── status.tsx         # Status page
+│   ├── settings.tsx       # Settings page
+│   ├── 404.tsx            # Custom 404
+│   ├── sitemap.xml.tsx    # Sitemap
+│   └── api/               # API routes
+│       └── health.ts
+├── components/             # React components (35+)
+│   ├── WalletConnect.tsx
+│   ├── TokenManager.tsx
+│   ├── DEXManager.tsx
+│   ├── NFTManager.tsx
+│   ├── Layout.tsx
+│   ├── SEO.tsx
+│   └── ... (30+ more)
+├── hooks/                  # Custom React hooks (37+)
+│   ├── useContractRead.ts
+│   ├── useContractWrite.ts
+│   ├── useTokenBalance.ts
+│   └── ... (30+ more)
+├── utils/                  # Utility functions
+│   ├── formatting.ts
+│   ├── constants.ts
+│   ├── contracts.ts
+│   └── ... (15+ more)
+├── abis/                   # Contract ABIs
+├── config/                 # Configuration
+│   ├── wagmi.ts
+│   └── env.ts
+├── context/                # React context
+│   └── Web3Context.tsx
+├── lib/                    # Library utilities
+│   └── utils.ts
+├── styles/
 │   └── globals.css        # Global styles
-├── hardhat.config.js      # Hardhat configuration
-├── next.config.js         # Next.js configuration
-└── package.json           # Dependencies and scripts
+├── public/                 # Static assets
+│   └── robots.txt
+├── examples/               # Example code
+│   └── ExampleUsage.tsx
+├── hardhat.config.js
+├── next.config.js
+├── tsconfig.json
+└── package.json
 ```
 
 ## 🔧 Available Scripts
@@ -105,14 +175,24 @@ Kisha/
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
+- `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
+- `npm run format` - Format code with Prettier
+- `npm run type-check` - Run TypeScript type checking
+- `npm run check-env` - Verify environment variables
 
 ### Smart Contracts
 - `npm run compile` - Compile contracts
 - `npm run test` - Run contract tests
-- `npm run deploy:local` - Deploy to local network
+- `npm run test:coverage` - Run tests with coverage
+- `npm run deploy:local` - Deploy SimpleStorage to local network
+- `npm run deploy:tokens` - Deploy tokens to local network
+- `npm run deploy:all` - Deploy all contracts to local network
 - `npm run deploy:sepolia` - Deploy to Sepolia testnet
+- `npm run deploy:all:sepolia` - Deploy all contracts to Sepolia
 - `npm run node` - Start local Hardhat node
+- `npm run clean` - Clean build artifacts
+- `npm run verify:sepolia` - Verify contracts on Etherscan
 
 ## 🌐 Network Configuration
 
