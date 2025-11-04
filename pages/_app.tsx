@@ -6,6 +6,7 @@ import { config } from '../config/wagmi'
 import Toast from '../components/Toast'
 import { Web3Provider } from '../context/Web3Context'
 import ErrorBoundary from '../components/ErrorBoundary'
+import Layout from '../components/Layout'
 
 const queryClient = new QueryClient()
 
@@ -15,7 +16,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <Web3Provider>
-            <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
             <Toast />
           </Web3Provider>
         </QueryClientProvider>

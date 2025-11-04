@@ -2963,3 +2963,70 @@ body {
 .tabs-content {
   padding: 1rem 0;
 }
+
+/* Layout */
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #ffffffcc;
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid #eee;
+}
+
+.header-inner {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  color: #444;
+}
+
+.nav a:hover {
+  color: #111;
+}
+
+.app-main {
+  flex: 1;
+  padding: 1.5rem 0;
+}
+
+.app-footer {
+  border-top: 1px solid #eee;
+  background: #fff;
+}
+
+.footer-inner {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
