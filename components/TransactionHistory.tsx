@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount } from 'wagmi'
+import Button from './Button'
+import { downloadTransactionsCSV, ExportableTransaction } from '../utils/export'
 
 interface Transaction {
   hash: string
@@ -203,15 +205,30 @@ export default function TransactionHistory() {
         </div>
       )}
 
-      <div className="history-footer">
-        <button className="refresh-button">
-          🔄 Refresh
-        </button>
+      <div className="history-footer" style={{ display: 'flex', gap: '1rem', justifyContent: 'space-between', alignItems: 'center', marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid #e0e0e0' }}>
+        <Button
+          onClick={() => {
+            const exportableTxs: ExportableTransaction[] = transactions.map(tx => ({
+              hash: tx.hash,
+              type: tx.type,
+              from: tx.from || address || '',
+              to: tx.to,
+              amount: tx.amount,
+              timestamp: tx.timestamp,
+              status: tx.status,
+              gasUsed: tx.gasUsed,
+            }))
+            downloadTransactionsCSV(exportableTxs)
+          }}
+          variant="outline"
+        >
+          📥 Export CSV
+        </Button>
         <a 
           href={`https://etherscan.io/address/${address}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="view-all-link"
+          style={{ color: '#1976d2', textDecoration: 'none', fontWeight: 600 }}
         >
           View All on Etherscan →
         </a>

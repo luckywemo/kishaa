@@ -142,3 +142,30 @@ export function parseError(error: any): string {
   return 'An unknown error occurred'
 }
 
+/**
+ * Format currency value (USD)
+ */
+export function formatCurrency(value: number | string, decimals = 2): string {
+  const num = typeof value === 'string' ? parseFloat(value) : value
+  if (isNaN(num)) return '$0.00'
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(num)
+}
+
+/**
+ * Format token amount with decimals
+ */
+export function formatTokenAmount(value: bigint | string | undefined | null, decimals: number): string {
+  if (!value) return '0'
+  if (typeof value === 'string') {
+    const num = parseFloat(value)
+    if (isNaN(num)) return '0'
+    return num.toFixed(decimals > 6 ? 6 : decimals)
+  }
+  return formatUnits(value, decimals)
+}
+

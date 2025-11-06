@@ -7,6 +7,12 @@ import TokenManager from '../components/TokenManager'
 import DEXManager from '../components/DEXManager'
 import NFTManager from '../components/NFTManager'
 import TransactionHistory from '../components/TransactionHistory'
+import PortfolioDashboard from '../components/PortfolioDashboard'
+import GasTracker from '../components/GasTracker'
+import AnalyticsDashboard from '../components/AnalyticsDashboard'
+import TokenSearch from '../components/TokenSearch'
+import StakingManager from '../components/StakingManager'
+import PriceChart from '../components/PriceChart'
 import SEO from '../components/SEO'
 import Tabs from '../components/Tabs'
 import Card from '../components/Card'
@@ -66,6 +72,36 @@ export default function Home() {
   }
 
   const tabs = [
+    {
+      id: 'portfolio',
+      label: '💼 Portfolio',
+      content: <PortfolioDashboard />,
+    },
+    {
+      id: 'gas',
+      label: '⛽ Gas',
+      content: <GasTracker />,
+    },
+    {
+      id: 'analytics',
+      label: '📈 Analytics',
+      content: <AnalyticsDashboard />,
+    },
+    {
+      id: 'prices',
+      label: '📊 Prices',
+      content: <PriceChart />,
+    },
+    {
+      id: 'search',
+      label: '🔍 Tokens',
+      content: <TokenSearch />,
+    },
+    {
+      id: 'staking',
+      label: '💰 Staking',
+      content: <StakingManager />,
+    },
     {
       id: 'storage',
       label: '📦 Storage',
@@ -142,7 +178,7 @@ export default function Home() {
     },
     {
       id: 'history',
-      label: '📊 History',
+      label: '📜 History',
       content: <TransactionHistory />,
     },
   ]
