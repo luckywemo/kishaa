@@ -13,6 +13,9 @@ import AnalyticsDashboard from '../components/AnalyticsDashboard'
 import TokenSearch from '../components/TokenSearch'
 import StakingManager from '../components/StakingManager'
 import PriceChart from '../components/PriceChart'
+import MultiSigWallet from '../components/MultiSigWallet'
+import NotificationCenter from '../components/NotificationCenter'
+import ActivityFeed from '../components/ActivityFeed'
 import SEO from '../components/SEO'
 import Tabs from '../components/Tabs'
 import Card from '../components/Card'
@@ -180,6 +183,21 @@ export default function Home() {
       id: 'history',
       label: '📜 History',
       content: <TransactionHistory />,
+    },
+    {
+      id: 'multisig',
+      label: '🔐 Multi-Sig',
+      content: <MultiSigWallet />,
+    },
+    {
+      id: 'notifications',
+      label: '🔔 Notifications',
+      content: <NotificationCenter />,
+    },
+    {
+      id: 'activity',
+      label: '📊 Activity',
+      content: <ActivityFeed />,
     },
   ]
 
